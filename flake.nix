@@ -19,12 +19,11 @@
         inherit system;
         overlays = [
           (_: super: {
-            raylib =
-              (super.raylib.overrideAttrs (_: {
-                CC = "${super.musl}/bin/musl-gcc";
-                preFixup = '''';
-              }))
-              .override {sharedLib = false;};
+            raylib = (super.raylib.overrideAttrs (_: {
+              CC = "${super.musl}/bin/musl-gcc";
+              preFixup = '''';
+            }))
+            .override {sharedLib = false;};
           })
         ];
       });
@@ -32,9 +31,12 @@
     packages = genSystems (system: {
       hampster-game = pkgs.${system}.callPackage ./nix/default {
         nim_chipmunk = self.packages.${system}.chipmunk;
+        inherit (self.packages.${system}) nimraylib_now;
       };
       default = self.packages.${system}.hampster-game;
       chipmunk = pkgs.${system}.callPackage ./nix/chipmunk {};
+      nimraylib_now = pkgs.${system}.callPackage ./nix/nimraylib_now {};
+      raylib = pkgs.${system}.raylib;
     });
 
     devShell = genSystems (system:
