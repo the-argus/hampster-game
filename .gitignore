@@ -3,5 +3,6 @@ nimblecache/
 htmldocs/
 
 result
+result-man
 
 .direnv/
