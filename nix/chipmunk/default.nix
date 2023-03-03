@@ -26,7 +26,14 @@ in
     nimBinOnly = false;
     nimbleFile = "${src}/chipmunk7.nimble";
 
+    prePatch = ''
+      sed -i "s/.*dynlib.*//g" src/chipmunk7.nim
+      sed -i "s/{.pop.}//g" src/chipmunk7.nim 
+    '';
+
     propagatedBuildInputs = [chipmunk];
+
+    passthru = {inherit chipmunk;};
   })
   .overrideAttrs (_: {
     postFixup = ''

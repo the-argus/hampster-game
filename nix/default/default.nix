@@ -22,6 +22,7 @@
     "--passL:-static"
     "-d:nimraylib_now_linkingOverride"
     "--passL:${nimraylib_now.raylib}/lib/libraylib.a"
+    "--passL:${nim_chipmunk.chipmunk}/lib/libchipmunk.a"
   ];
 in
   nimPackages.buildNimPackage rec {
