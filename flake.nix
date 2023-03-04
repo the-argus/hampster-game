@@ -36,6 +36,15 @@
               original-libvdpau = super.libvdpau;
               inherit libstdcxx5;
             };
+            libglvnd = super.callPackage ./nix/libglvnd {
+              original-libglvnd = super.libglvnd;
+              inherit wrapped-musl-gcc;
+            };
+          })
+          (_: super: {
+            glfw = super.callPackage ./nix/glfw {
+              original-glfw = super.glfw;
+            };
           })
           (_: super: {
             raylib = super.callPackage ./nix/raylib {original-raylib = super.raylib;};
@@ -54,6 +63,8 @@
       raylib = pkgs.${system}.raylib;
       chipmunk = pkgs.${system}.chipmunk;
       libvdpau = pkgs.${system}.libvdpau;
+      libstdcxx5 = pkgs.${system}.libstdcxx5;
+      libglvnd = pkgs.${system}.libglvnd;
     });
 
     devShell = genSystems (system:
