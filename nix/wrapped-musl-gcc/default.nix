@@ -1,11 +1,12 @@
 {
   stdenv,
   buildPackages,
+  musl,
   ...
 }:
 stdenv.mkDerivation {
   name = "wrapped-musl-gcc";
-  src = super.musl;
+  src = musl;
   dontUnpack = true;
   buildInputs = [buildPackages.makeWrapper];
   installPhase = ''

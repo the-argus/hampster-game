@@ -1,9 +1,9 @@
 {
-  raylib,
+  original-raylib,
   musl,
   ...
 }:
-(raylib.overrideAttrs (oa: {
+(original-raylib.overrideAttrs (oa: {
   buildInputs = oa.buildInputs ++ [musl];
   nativeBuildInputs = oa.nativeBuildInputs ++ [musl musl.dev];
   cmakeFlags = [

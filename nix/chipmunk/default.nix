@@ -1,9 +1,9 @@
 {
-  chipmunk,
+  original-chipmunk,
   musl,
   ...
 }:
-chipmunk.overrideAttrs (oa: {
+original-chipmunk.overrideAttrs (oa: {
   buildInputs = oa.buildInputs ++ [musl];
   nativeBuildInputs = oa.nativeBuildInputs ++ [musl musl.dev];
   cmakeFlags = [
