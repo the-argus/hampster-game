@@ -1,8 +1,7 @@
 echo "hello, hampster"
 
 import nimraylib_now
-import nimraylib_now/raygui
-import lib/engine
+import lib/engine as libengine
 import engine
 import scenes/testing as testingLevel
 
