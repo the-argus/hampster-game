@@ -28,7 +28,7 @@
     devShell = genSystems (system:
       pkgs.${system}.mkShell {
         packages = with pkgs.${system}; [
-          chipmunk
+		  self.packages.${system}.nim_chipmunk
           nim
           raylib
           xorg.libX11

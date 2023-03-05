@@ -11,6 +11,7 @@
     {"url":"https://github.com/avahe-kellenberger/nim-chipmunk","files":["chipmunk.nim", "chipmunk7.nim", "src/chipmunk7.nim"],"binaries":[],"isLink":false}
   '';
   nimFlags = [
+    "--threads:on"
     "-d:release"
   ];
   src = fetchgit {
