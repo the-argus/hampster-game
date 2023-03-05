@@ -1,8 +1,10 @@
 {
   nimRelease ? true,
+  useStaticChipmunk ? false,
   nimPackages,
   fetchgit,
   chipmunk,
+  lib,
   ...
 }: let
   nimblemeta = builtins.toFile "nimblemeta.json" ''
@@ -26,9 +28,9 @@ in
     nimBinOnly = false;
     nimbleFile = "${src}/chipmunk7.nimble";
 
-    prePatch = ''
+    prePatch = lib.strings.optionalString useStaticChipmunk ''
       sed -i "s/.*dynlib.*//g" src/chipmunk7.nim
-      sed -i "s/{.pop.}//g" src/chipmunk7.nim 
+      sed -i "s/{.pop.}//g" src/chipmunk7.nim
     '';
 
     propagatedBuildInputs = [chipmunk];

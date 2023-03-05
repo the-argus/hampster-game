@@ -5,25 +5,27 @@
   nim_chipmunk,
   musl,
   nimraylib_now,
+  isStatic ? false,
   upx,
   binutils,
+  lib,
   ...
 }: let
-  nimFlags = [
-    "--gcc.exe=\"musl-gcc\""
-    "--gcc.linkerexe=\"musl-gcc\""
-
-    "--threads:on"
-    "-d:release"
-    "-d:nimraylib_now_wayland"
-    # "--passL:${xorg.libX11}/lib/libX11.la"
-    # "--passC:-I${xorg.libX11}/include"
-    "--passC:-static"
-    "--passL:-static"
-    "-d:nimraylib_now_linkingOverride"
-    "--passL:${nimraylib_now.raylib}/lib/libraylib.a"
-    "--passL:${nim_chipmunk.chipmunk}/lib/libchipmunk.a"
-  ];
+  nimFlags =
+    [
+      "--threads:on"
+      "-d:release"
+      "-d:nimraylib_now_shared"
+    ]
+    ++ (lib.lists.optionals isStatic [
+      "--gcc.exe=\"musl-gcc\""
+      "--gcc.linkerexe=\"musl-gcc\""
+      "--passC:-static"
+      "--passL:-static"
+      "-d:nimraylib_now_linkingOverride"
+      "--passL:${nimraylib_now.raylib}/lib/libraylib.a"
+      "--passL:${nim_chipmunk.chipmunk}/lib/libchipmunk.a"
+    ]);
 in
   nimPackages.buildNimPackage rec {
     pname = "hampster_game";
@@ -34,7 +36,7 @@ in
     nimbleFile = ../../hampster_game.nimble;
     inherit nimRelease nimFlags;
 
-    nativeBuildInputs = [
+    nativeBuildInputs = lib.lists.optionals isStatic [
       upx
       binutils
       musl
@@ -51,7 +53,7 @@ in
       nimraylib_now
     ];
 
-    postFixup = ''
+    postFixup = lib.strings.optionalString isStatic ''
       strip -s $out/bin/${pname}
       upx --best $out/bin/${pname}
     '';

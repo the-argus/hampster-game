@@ -3,6 +3,7 @@
   nimRelease ? true,
   fetchFromGitHub,
   raylib,
+  libGL,
   ...
 }:
 nimPackages.buildNimPackage rec {
@@ -10,12 +11,11 @@ nimPackages.buildNimPackage rec {
   version = "v0.15.0";
   nimBinOnly = false;
 
-  propagatedBuildInputs = [raylib];
+  propagatedBuildInputs = [raylib libGL];
 
   inherit nimRelease;
   nimFlags = [
     "-d:release"
-    "-d:nimraylib_now_wayland"
   ];
   src = fetchFromGitHub {
     repo = pname;
