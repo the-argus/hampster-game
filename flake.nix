@@ -23,12 +23,14 @@
       default = self.packages.${system}.hampster-game;
       nim_chipmunk = pkgs.${system}.callPackage ./nix/nim_chipmunk {};
       nimraylib_now = pkgs.${system}.callPackage ./nix/nimraylib_now {};
+      libnimhcr = pkgs.${system}.callPackage ./nix/libnimhcr {};
     });
 
     devShell = genSystems (system:
       pkgs.${system}.mkShell {
         packages = with pkgs.${system}; [
 		  self.packages.${system}.nim_chipmunk
+		  self.packages.${system}.libnimhcr
           gdb
           nim
           raylib
