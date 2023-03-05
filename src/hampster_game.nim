@@ -15,6 +15,7 @@ var
   windowInfo = WindowInfo(width: RENDER_WIDTH, height: RENDER_HEIGHT)
 
 let cozette = nimraylib_now.loadFont("../assets/fonts/cozette.fnt")
+setFont(cozette)
 
 setConfigFlags(Window_Resizable or Msaa4xHint)
 
@@ -40,8 +41,9 @@ while not windowShouldClose():
   # it doesnt call the raylib BeginDraw function
   beginTextureMode(mainTarget):
     clearBackground(White)
-    drawTextEx(cozette, "welcome to hampster game :)".cstring, Vector2(x:20, y:100), 20, 2, Black)
     eng.draw()
+    drawTextEx(cozette, "welcome to hampster game :)".cstring, Vector2(x:20, y:100), 20, 2, Black)
+    drawText("testing", 20, windowInfo.height - 10, 20, Black)
 
   beginDrawing:
     clearBackground(Black)
@@ -49,7 +51,7 @@ while not windowShouldClose():
     let
       source: Rectangle = (
         0.0, 0.0,
-        mainTarget.texture.width.float64, mainTarget.texture.height.float64)
+        mainTarget.texture.width.float64, -mainTarget.texture.height.float64)
       dest: Rectangle = (
         (getScreenWidth().float - (RENDER_WIDTH.float * scale)) * 0.5,
         (getScreenHeight().float - (RENDER_HEIGHT.float * scale)) * 0.5,
