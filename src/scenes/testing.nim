@@ -1,4 +1,5 @@
 import nimraylib_now
+import ../lib/engine
 import ../engine
 import ../obj/barrier
 import chipmunk7 as cm

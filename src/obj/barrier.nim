@@ -1,5 +1,5 @@
 import chipmunk7 as cm
-import base
+import ../lib/obj
 import nimraylib_now
 import std/options
 

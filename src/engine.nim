@@ -1,25 +1,9 @@
 import std/options
 import nimraylib_now
 import chipmunk7 as cm
-import obj/base
+import lib/obj
+import lib/engine
 import ui
-
-type
-  WindowInfo* = object
-    width*: int
-    height*: int
-
-  Level* = object
-    space*: cm.Space
-
-  Engine* = ref object
-    gameObjects: seq[GameObject]
-    windowInfo*: WindowInfo
-    level*: Level
-    camera*: Camera2D
-    cameraHandler*: proc (eng: Engine)
-
-  LevelLoader* = proc(self: Engine)
 
 proc defaultCameraHandler(self: Engine) =
   discard

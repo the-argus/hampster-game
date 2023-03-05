@@ -1,4 +1,4 @@
-import engine
+import lib/engine
 import nimraylib_now
 
 proc drawUI*(self: Engine) =
