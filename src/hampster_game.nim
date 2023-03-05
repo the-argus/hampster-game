@@ -1,6 +1,7 @@
 echo "hello, hampster"
 
 import nimraylib_now
+import nimraylib_now/raygui
 import engine
 import scenes/testing as testingLevel
 
@@ -13,13 +14,14 @@ var
   # these may be modified by raylib functions to reflect actual screen dimension
   windowInfo = WindowInfo(width: RENDER_WIDTH, height: RENDER_HEIGHT)
 
+let cozette = nimraylib_now.loadFont("../assets/fonts/cozette.fnt")
 
 setConfigFlags(Window_Resizable or Msaa4xHint)
 
 initWindow(windowInfo.width, windowInfo.height, screenTitle)
 
 let mainTarget = loadRenderTexture(RENDER_WIDTH, RENDER_HEIGHT)
-setTextureFilter(mainTarget.texture, nimraylib_now.TextureFilter.BILINEAR)
+setTextureFilter(mainTarget.texture, TextureFilter.POINT)
 
 setTargetFPS(60)
 
@@ -38,6 +40,7 @@ while not windowShouldClose():
   # it doesnt call the raylib BeginDraw function
   beginTextureMode(mainTarget):
     clearBackground(White)
+    drawTextEx(cozette, "welcome to hampster game :)".cstring, Vector2(x:20, y:100), 20, 2, Black)
     eng.draw()
 
   beginDrawing:
@@ -57,4 +60,5 @@ while not windowShouldClose():
       mainTarget.texture,
       source, dest, (0.0, 0.0), 0.0, nimraylib_now.White)
 
+unloadFont(cozette)
 closeWindow()
