@@ -1,12 +1,16 @@
 {
   original-glfw,
-  musl,
+  # musl,
   libxcb,
   ...
 }:
 original-glfw.overrideAttrs (oa: {
-  buildInputs = oa.buildInputs ++ [musl musl.dev libxcb];
+  # buildInputs = oa.buildInputs ++ [musl musl.dev libxcb];
   nativeBuildInputs = [libxcb] ++ oa.nativeBuildInputs;
-  CC = "musl-gcc -static";
-  CXX = "musl-gcc -static";
+  cmakeFlags =
+    oa.cmakeFlags
+    ++ [
+	  "-DBUILD_SHARED_LIBS=OFF"
+      "-DCMAKE_SHARED_LINKER_FLAGS=-lxcb"
+    ];
 })

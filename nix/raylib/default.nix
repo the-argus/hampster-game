@@ -8,7 +8,7 @@
   nativeBuildInputs = oa.nativeBuildInputs ++ [musl musl.dev];
   cmakeFlags = [
     "-DUSE_WAYLAND_DISPLAY=ON"
-    # "-DUSE_EXTERNAL_GLFW=ON"
+    "-DUSE_EXTERNAL_GLFW=OFF"
     "-DBUILD_EXAMPLES=OFF"
     "-DCUSTOMIZE_BUILD=1"
     "-DINCLUDE_EVERYTHING=ON"
