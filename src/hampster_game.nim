@@ -42,8 +42,7 @@ while not windowShouldClose():
   beginTextureMode(mainTarget):
     clearBackground(White)
     eng.draw()
-    drawTextEx(cozette, "welcome to hampster game :)".cstring, Vector2(x:20, y:100), 20, 2, Black)
-    drawText("testing", 20, windowInfo.height - 10, 20, Black)
+    drawText("welcome to hampster game :)", posX=20, posY=100, 20, Black)
 
   beginDrawing:
     clearBackground(Black)
