@@ -18,7 +18,7 @@
   in {
     packages = genSystems (system: {
       hampster-game = pkgs.${system}.callPackage ./nix/default {
-        inherit (self.packages.${system}) nim_chipmunk nimraylib_now;
+        inherit (self.packages.${system}) nim_chipmunk nimraylib_now libnim;
       };
       default = self.packages.${system}.hampster-game;
       nim_chipmunk = pkgs.${system}.callPackage ./nix/nim_chipmunk {};

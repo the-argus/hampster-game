@@ -6,9 +6,11 @@
   musl,
   nimraylib_now,
   isStatic ? false,
+  hotcodereload ? false,
   upx,
   binutils,
   lib,
+  libnim,
   ...
 }: let
   nimFlags =
@@ -17,6 +19,11 @@
       "-d:release"
       "-d:nimraylib_now_shared"
     ]
+    ++ (lib.lists.optionals hotcodereload [
+      "--hotcodereloading:on"
+      "--passL:-lnimhcr"
+      "--passL:-lnimrtl"
+    ])
     ++ (lib.lists.optionals isStatic [
       "--gcc.exe=\"musl-gcc\""
       "--gcc.linkerexe=\"musl-gcc\""
@@ -44,6 +51,7 @@ in
     ];
 
     buildInputs = with nimPackages; [
+      libnim
       xorg.libX11
       xorg.libXcursor
       xorg.libXrandr.dev
