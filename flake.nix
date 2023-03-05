@@ -29,6 +29,7 @@
       pkgs.${system}.mkShell {
         packages = with pkgs.${system}; [
 		  self.packages.${system}.nim_chipmunk
+          gdb
           nim
           raylib
           xorg.libX11
