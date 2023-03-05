@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=3 uid="uid://dlseij8xsnqn4"]
+
+[ext_resource type="FontFile" uid="uid://0btjwa5j6sn8" path="res://assets/fonts/CozetteVector.ttf" id="1_wd4gx"]
+
+[sub_resource type="Theme" id="Theme_n2grb"]
+default_font = ExtResource("1_wd4gx")
+default_font_size = 100
+
+[sub_resource type="Theme" id="Theme_0cof5"]
+default_font = ExtResource("1_wd4gx")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ltdwb"]
+resource_name = "ButtonNormal"
+bg_color = Color(0.807843, 0.52549, 0.290196, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sfixd"]
+resource_name = "ButtonHover"
+bg_color = Color(0.803922, 0.603922, 0.247059, 1)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="UI" type="Node" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.192157, 0.192157, 0.192157, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_n2grb")
+text = "hampster game :)"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="UI/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme = SubResource("Theme_0cof5")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_ltdwb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_sfixd")
+text = "play"
+flat = true
