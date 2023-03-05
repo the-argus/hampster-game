@@ -6,8 +6,8 @@ import scenes/testing as testingLevel
 
 const
   screenTitle = "couple"
-  RENDER_WIDTH = 800
-  RENDER_HEIGHT = 450
+  RENDER_WIDTH = 400
+  RENDER_HEIGHT = 225
 var
   scale: float
   # these may be modified by raylib functions to reflect actual screen dimension
