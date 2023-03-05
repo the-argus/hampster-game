@@ -42,7 +42,6 @@ while not windowShouldClose():
   beginTextureMode(mainTarget):
     clearBackground(White)
     eng.draw()
-    drawText("welcome to hampster game :)", posX=20, posY=100, 20, Black)
 
   beginDrawing:
     clearBackground(Black)

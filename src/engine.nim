@@ -2,6 +2,7 @@ import std/options
 import nimraylib_now
 import chipmunk7 as cm
 import obj/base
+import ui
 
 type
   WindowInfo* = object
@@ -61,3 +62,4 @@ proc draw*(self: Engine) =
       if obj.onDraw.isSome:
         let onDraw = obj.onDraw.get()
         onDraw(obj)
+  self.drawUI()
