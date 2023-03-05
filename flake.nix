@@ -18,11 +18,15 @@
       import nixpkgs {
         inherit system;
         overlays = [
+          (_: super: {
+            dbus = super.callPackage ./nix/dbus {original-dbus = super.dbus;};
+          })
           (_: super: let
             mkXorgStatic = super.callPackage ./nix/mk-xorg-static {};
             wrapped-musl-gcc = super.callPackage ./nix/wrapped-musl-gcc {};
             libstdcxx5 = super.callPackage ./nix/libstdcxx5 {inherit wrapped-musl-gcc;};
           in {
+            libpulseaudio = super.libpulseaudio.override {};
             xorg =
               super.xorg
               // {
@@ -65,6 +69,8 @@
       libvdpau = pkgs.${system}.libvdpau;
       libstdcxx5 = pkgs.${system}.libstdcxx5;
       libglvnd = pkgs.${system}.libglvnd;
+      libpulseaudio = pkgs.${system}.libpulseaudio;
+      dbus = pkgs.${system}.dbus;
     });
 
     devShell = genSystems (system:
