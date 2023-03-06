@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dlseij8xsnqn4"]
+[gd_scene load_steps=7 format=3 uid="uid://dlseij8xsnqn4"]
 
 [ext_resource type="FontFile" uid="uid://0btjwa5j6sn8" path="res://assets/fonts/CozetteVector.ttf" id="1_wd4gx"]
+[ext_resource type="PackedScene" uid="uid://bu5gt6bpb05ly" path="res://scenes/main_physics.tscn" id="2_7crcs"]
 
 [sub_resource type="Theme" id="Theme_n2grb"]
 default_font = ExtResource("1_wd4gx")
@@ -22,43 +23,72 @@ bg_color = Color(0.803922, 0.603922, 0.247059, 1)
 
 [node name="UI" type="Node" parent="."]
 
-[node name="ColorRect" type="ColorRect" parent="UI"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.192157, 0.192157, 0.192157, 1)
-
-[node name="MarginContainer" type="MarginContainer" parent="UI"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="UI/MarginContainer/VBoxContainer"]
-layout_mode = 2
+[node name="Title" type="Label" parent="UI"]
+offset_left = 20.0
+offset_top = 25.0
+offset_right = 1172.0
+offset_bottom = 137.0
 theme = SubResource("Theme_n2grb")
 text = "hampster game :)"
-horizontal_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer/VBoxContainer"]
+[node name="Buttons" type="MarginContainer" parent="UI"]
+offset_left = 27.0
+offset_top = 159.0
+offset_right = 1179.0
+offset_bottom = 807.0
+scale = Vector2(0.507024, 0.507024)
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Buttons"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="PlayButtonMargin" type="MarginContainer" parent="UI/Buttons/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Buttons/VBoxContainer/PlayButtonMargin"]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="UI/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer"]
+[node name="PlayButton" type="Button" parent="UI/Buttons/VBoxContainer/PlayButtonMargin/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 focus_mode = 0
 mouse_default_cursor_shape = 2
 theme = SubResource("Theme_0cof5")
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 100
 theme_override_styles/normal = SubResource("StyleBoxFlat_ltdwb")
 theme_override_styles/hover = SubResource("StyleBoxFlat_sfixd")
 text = "play"
-flat = true
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Buttons/VBoxContainer/PlayButtonMargin/HBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Buttons/VBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="QuitButtonMargin" type="MarginContainer" parent="UI/Buttons/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Buttons/VBoxContainer/QuitButtonMargin"]
+layout_mode = 2
+
+[node name="QuitButton" type="Button" parent="UI/Buttons/VBoxContainer/QuitButtonMargin/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme = SubResource("Theme_0cof5")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = SubResource("StyleBoxFlat_ltdwb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_sfixd")
+text = "quit
+"
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Buttons/VBoxContainer/QuitButtonMargin/HBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+
+[node name="Node2D" parent="." instance=ExtResource("2_7crcs")]
